@@ -1,23 +1,15 @@
 # audiobooksfeed
-本地有声书RSS订阅链接生成，可用于Apple Podcast
+本地有声书RSS订阅链接生成，可用于Apple Podcast 
 
 可识别的文件结构如下：
 
-├── 有声书文件夹 1
-│   ├── EP01.m4a
-│   ├── EP02.m4a
-│   ├── cover.jpg
-│   ├── desc.txt
-│   ├── metadata.abs
-│   └── reader.txt
-├── 有声书文件夹 2
-│   ├── EP01.m4a
-│   ├── EP02.m4a
-│   ├── cover.jpg
-│   ├── desc.txt
-│   ├── metadata.abs
-│   ├── podcast.xml
-│   └── reader.txt
+![](https://github.com/plsy1/audiobooksfeed/blob/main/img/tree.png?raw=true)
+
+## Features
+
+- 支持audiobookshelf metadata刮削
+- 支持红叶有声书刮削
+- 生成 RSS 订阅链接
 
 ## 配置
 
