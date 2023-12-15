@@ -17,7 +17,7 @@
 - 支持红叶有声书刮削
 - 生成 RSS 订阅链接
 
-## 配置
+## Usage
 
 1. 克隆本项目
 
@@ -25,19 +25,17 @@
 git clone https://github.com/plsy1/audiobooksfeed
 ```
 
-2. 修改`config.ini`
+2. 修改`config.ini`带注释的部分
 
-```
+```ini
 [Server]
-PORT = 8888 						## 文件服务器端口号
-DIRECTORY = /audio 			## 有声书根目录
+PORT = 1818 #文件服务器端口号
+DIRECTORY = /audiobooks #有声书根目录
+AUDIO_EXTENSIONS = .m4a, .mp3
+
+[DATABASE]
+FILENAME = data.db
 ```
 
-3. 运行`main.py`
 
-## 其他
-
-生成的RSS XML文件存储在有声书根目录下
-
-RSS链接文件存储在main.py同目录下
 
