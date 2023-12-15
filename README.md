@@ -1,6 +1,12 @@
 # audiobooksfeed
 本地有声书RSS订阅链接生成，可用于Apple Podcast 
 
+![效果](https://github.com/plsy1/audiobooksfeed/blob/main/img/podcast.png?raw=true)
+
+结果保存到html文件中，手动添加到podcast即可。
+
+![](https://github.com/plsy1/audiobooksfeed/blob/main/img/result.png?raw=true)
+
 可识别的文件结构如下：
 
 ![](https://github.com/plsy1/audiobooksfeed/blob/main/img/tree.png?raw=true)
