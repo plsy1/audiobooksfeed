@@ -1,28 +1,33 @@
-import xml.etree.ElementTree as ET
 import os, re
-import socket
+import netifaces
+import ipaddress
 
 def get_preferred_ip_address():
-    try:
-        # 尝试使用本地回环地址
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 80))
-        ip_address = s.getsockname()[0]
-        s.close()
+    private_networks = [
+        ipaddress.IPv4Network('10.0.0.0/8'),
+        ipaddress.IPv4Network('172.16.0.0/12'),
+        ipaddress.IPv4Network('192.168.0.0/16')
+    ]
 
-        return ip_address
+
+    try:
+        # 获取所有网络接口信息
+        interfaces = netifaces.interfaces()
+
+        # 遍历网络接口找到IPv4地址
+        for interface in interfaces:
+            addrs = netifaces.ifaddresses(interface).get(netifaces.AF_INET, [])
+            for addr_info in addrs:
+                ip_address = addr_info['addr']
+
+                # 检查是否是私有地址
+                if any(ipaddress.ip_address(ip_address) in private_net for private_net in private_networks):
+                    return ip_address
+
     except Exception as e:
         print(f"Error: {e}")
 
-    try:
-        # 尝试获取自动分配的IP地址（使用DHCP）
-        ip_address = socket.gethostbyname(socket.gethostname())
-        return ip_address
-    except Exception as e:
-        print(f"Error: {e}")
-
-    # 如果以上两种方式都不可用，选择一个私有IP地址范围
-    return '192.168.1.1'  # 你可以根据需要更改此值
+    return None
 
 def get_metadata(abs_file_path):
     metadata = {}
@@ -65,13 +70,20 @@ def get_desc(abs_file_path):
     return desc
 
 
-def get_file_names(directory):
+def get_file_names(directory, extensions):
     files = []
     for filename in sorted(os.listdir(directory)):
-        if filename.endswith(".m4a"):
+        if any(filename.endswith(ext) for ext in extensions):
             files.append(filename)
     return files
 
+def get_cover(directory):
+    files = []
+    for filename in sorted(os.listdir(directory)):
+        file_name_without_extension, file_extension = os.path.splitext(filename)
+        if 'cover' == file_name_without_extension.lower():
+            files.append(filename)
+    return files
 
 def get_all_folders(dir):
     # 获取当前工作目录

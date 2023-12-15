@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.table-container {
+  width: 60%;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  width: 50%;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+th {
+  background-color: #f2f2f2;
+}
